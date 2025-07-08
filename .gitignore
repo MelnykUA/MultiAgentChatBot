@@ -3,37 +3,51 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment folders
+# Python
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
 .venv/
 venv/
 ENV/
 env/
 
-# Environment variables files
-.env
-.env.*
-
-# IDE and editor configs
+# Editor Configs
 .vscode/
 .idea/
 
-# Python logs and caches
-*.log
-.pytest_cache/
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# MacOS specific files
+# MacOS metadata
 .DS_Store
 
-# Streamlit cache folder
-.streamlit/
+# Environment Config
+.env
+.env.*
 
-# Distribution / packaging
-build/
+# Logs & coverage
+*.log
+*.out
+*.pid
+.coverage
+htmlcov/
 dist/
-*.egg-info/
+build/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Streamlit
+.streamlit/config.toml
+
+# Jupyter
+.ipynb_checkpoints
+
+# Local databases
+*.sqlite3
+*.db
+
+# Wheel and distribution
+*.egg-info/
+*.egg/
