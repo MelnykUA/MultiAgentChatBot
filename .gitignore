@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables files
+.env
+.env.*
+
+# IDE and editor configs
+.vscode/
+.idea/
+
+# Python logs and caches
+*.log
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# MacOS specific files
+.DS_Store
+
+# Streamlit cache folder
+.streamlit/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
