@@ -1,2 +1,13 @@
-# MultiAgentChatBot
-Multi-Agent Chatbot built with FastAPI and Streamlit. Uses a researcher-to-coder agent pipeline to generate responses and code. Features secure .env API key management, a clean UI, and a modular backend. Ideal for staging, local development, and future production deployment.
+# 🤖 Multi-Agent Chatbot
+
+A production-grade, secure, modular multi-agent chatbot system built with FastAPI, OpenAI, and Streamlit.  
+Includes a **Researcher Agent** + **Coder Agent**, full test coverage, CI/CD, secret scanning, and live UI.
+
+---
+
+## 🌐 Live Demo
+
+> Run locally:
+```bash
+uvicorn main:app --reload
+streamlit run ui.py
