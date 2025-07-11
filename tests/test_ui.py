@@ -19,4 +19,4 @@ async def test_chat_endpoint_success(monkeypatch):
             json={"user_input": "What is an RNN?"},
         )
         assert response.status_code == 200
-        assert "mock transformer model" in response.json()["assistant_response"].lower()
+        assert "mock transformer model" in response.json()["response"].lower()
