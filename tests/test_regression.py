@@ -13,7 +13,7 @@ async def test_regression_chat_endpoint_consistent_response(monkeypatch):
 
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         payload = {"user_input": "Explain Transformer architecture."}
-        headers = {"x-api-key": "staging-api-key-123"}
+        headers = {"x-api-key": "staging-api-key-721"}
 
         first_response = await client.post("/chat", json=payload, headers=headers)
         second_response = await client.post("/chat", json=payload, headers=headers)
@@ -39,3 +39,4 @@ async def test_chat_endpoint_rejects_invalid_api_key():
         headers = {"x-api-key": "wrong-key"}
         response = await client.post("/chat", json=payload, headers=headers)
         assert response.status_code == 401
+        assert response.json()["detail"] == "Unauthorized"
