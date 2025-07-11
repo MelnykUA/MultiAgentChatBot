@@ -1,16 +1,21 @@
-from fastapi import FastAPI, Request, Header, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
-import os
 import logging
-from agents import researcher_node, coder_node
+import os
+
+from dotenv import load_dotenv
+from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+
+from agents import coder_node, researcher_node
 
 load_dotenv()  # Load environment variables
+
 
 app = FastAPI()
 
 # CORS Setup — restrict origins in staging/production
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")  # comma-separated list in .env
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(
+    ","
+)  # comma-separated list in .env
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins if allowed_origins != ["*"] else ["*"],
@@ -23,9 +28,11 @@ logging.basicConfig(level=logging.INFO)
 
 INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY")
 
+
 @app.get("/")
 def read_root():
     return {"message": "Multi-Agent Chatbot API is running."}
+
 
 @app.post("/chat")
 async def chat(request: Request, x_api_key: str = Header(...)):

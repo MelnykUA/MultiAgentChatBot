@@ -24,6 +24,7 @@ env/
 # Environment Config
 .env
 .env.*
+*.env.*
 
 # Logs & coverage
 *.log
@@ -38,8 +39,10 @@ build/
 .pytest_cache/
 .cache/
 
+
 # Streamlit
 .streamlit/config.toml
+*.toml
 
 # Jupyter
 .ipynb_checkpoints
@@ -51,3 +54,10 @@ build/
 # Wheel and distribution
 *.egg-info/
 *.egg/
+
+.secrets.baseline
+--baseline
+.streamlit/secrets.toml
+*.key
+*.pem
+new*
