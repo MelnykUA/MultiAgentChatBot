@@ -29,3 +29,13 @@ async def test_regression_chat_endpoint_consistent_response(monkeypatch):
         assert (
             data1["response"] == data2["response"]
         ), "Chat responses are inconsistent!"
+
+
+@pytest.mark.asyncio
+async def test_chat_endpoint_rejects_invalid_api_key():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        payload = {"user_input": "Test"}
+        headers = {"x-api-key": "wrong-key"}
+        response = await client.post("/chat", json=payload, headers=headers)
+        assert response.status_code == 401
