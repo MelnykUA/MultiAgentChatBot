@@ -1,22 +1,22 @@
-# Core Dev Tools
+# === Install runtime deps for type resolution in IDE/CI ===
+-r requirements.txt
+
+# === Core Dev Tools (strictly pinned) ===
 black==24.4.2
 isort==5.13.2
 flake8==7.0.0
 mypy==1.10.0
 detect-secrets==1.4.0
 
-# Test Dependencies
+# === Testing Framework ===
 pytest==8.2.1
 pytest-asyncio==0.23.6
-httpx==0.27.0
-pytest-cov==5.0.0
+pytest-cov>=4.1,<6.0
 
+# === Type stubs for better mypy checking ===
+types-requests>=2.31.0
+types-python-dateutil>=2.8.19
 
-# Type Hints
-types-requests==2.31.0.20240406
-types-python-dateutil==2.8.19.20240106
-types-setuptools
-
-# Optional: Rich CLI + Debugging
-ipython==8.24.0
-rich==13.7.1
+# === Optional: Interactive debugging tools ===
+ipython>=8.24.0
+rich>=13.7.1
