@@ -1,0 +1,26 @@
+{
+  "name": "multiagentchatbot",
+  "version": "1.0.0",
+  "description": "[![codecov](https://codecov.io/gh/MelnykUA/MultiAgentChatBot/branch/main/graph/badge.svg)](https://github.com/MelnykUA/MultiAgentChatBot)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelnykUA/MultiAgentChatBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelnykUA/MultiAgentChatBot/issues"
+  },
+  "homepage": "https://github.com/MelnykUA/MultiAgentChatBot#readme",
+  "devDependencies": {
+    "jest": "^30.0.4"
+  }
+}
