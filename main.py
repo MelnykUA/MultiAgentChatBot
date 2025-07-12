@@ -2,20 +2,18 @@ import logging
 import os
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security.api_key import APIKeyHeader
 
 from agents import coder_node, researcher_node
 
 load_dotenv()  # Load environment variables
 
-
 app = FastAPI()
 
 # CORS Setup — restrict origins in staging/production
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(
-    ","
-)  # comma-separated list in .env
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins if allowed_origins != ["*"] else ["*"],
@@ -27,6 +25,8 @@ app.add_middleware(
 logging.basicConfig(level=logging.INFO)
 
 INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY")
+API_KEY_NAME = "x-api-key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=True)
 
 
 @app.get("/")
@@ -35,10 +35,8 @@ def read_root():
 
 
 @app.post("/chat")
-async def chat(request: Request, x_api_key: str = Header(...)):
-    # Simple API key auth check
-    if x_api_key != INTERNAL_API_KEY:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+async def chat(request: Request, _api_key: str = Depends(api_key_header)):
+    # _api_key is checked by Depends(api_key_header), so no need to check again here.
 
     data = await request.json()
     user_input = data.get("user_input", "").strip()

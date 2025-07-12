@@ -10,8 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      FAKE_OPENAI: true
-      INTERNAL_API_KEY: staging-api-key-721
+      INTERNAL_API_KEY: ${{ secrets.INTERNAL_API_KEY }}
+      FAKE_OPENAI: ${{ secrets.FAKE_OPENAI }}
+
 
     steps:
       - uses: actions/checkout@v4
@@ -38,3 +39,8 @@ jobs:
       - name: Run tests
         run: |
           pytest tests
+
+      - name: Detect secrets in code
+        run: |
+          pip install detect-secrets
+          detect-secrets scan --baseline .secrets.baseline
